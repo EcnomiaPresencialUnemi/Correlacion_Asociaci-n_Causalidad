@@ -17,7 +17,7 @@ library(tidyverse)
 # Obtener datos históricos de los precios de las acciones de Apple (AAPL)
 getSymbols("AAPL", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
 ```
-### *2.1 Explicación del código*
+#### *2.1 Explicación del código*
 - `getSymbols("AAPL", ...)`: Este es el comando que descarga los datos de las acciones de Apple.
 - `AAPL` es el símbolo de Apple en el mercado de valores.
 - `src = "yahoo"`: Especifica que los datos se obtendrán desde Yahoo Finance.
