@@ -10,4 +10,16 @@ las variables seleccionadas son AAPL.Adjusted y AAPL.Volume
 Ya hemos verificado que AAPL.Adjusted no es estacionaria (se la transforma a logaritmo y se trabaja con la primera diferencia) y AAPL.Volume si es estacionaria.
 
 ### 4. Aplicar la Prueba de Causalidad de Granger
+# Instalar el paquete necesario si aún no lo tienes
+install.packages("lmtest")
+library(lmtest)
 
+# Probar si diff_log_adjusted causa AAPL.Volume
+granger_test_1 <- grangertest(AAPL.Volume ~ diff_log_adjusted, order = 2, data = aapl_selected)
+
+# Probar si AAPL.Volume causa diff_log_adjusted
+granger_test_2 <- grangertest(diff_log_adjusted ~ AAPL.Volume, order = 2, data = aapl_selected)
+
+# Mostrar los resultados
+print(granger_test_1)
+print(granger_test_2)
