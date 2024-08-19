@@ -55,3 +55,6 @@ aapl_selected <- aapl_data %>% select(date, AAPL.Adjusted, AAPL.Volume)
 - `AAPL.Adjusted`: Selecciona el precio de cierre ajustado de Apple, que es esencial para analizar el valor de las acciones ajustado por eventos corporativos.
 - `AAPL.Volume`: Selecciona el volumen de transacciones, que es clave para evaluar la actividad del mercado.
 
+### 5. Verificar la estacionariedad
+#### Test de Dickey-Fuller Aumentado (ADF).- El ADF test se utiliza para determinar si una serie temporal es estacionaria, lo que significa que sus propiedades estadísticas, como la media y la varianza, son constantes a lo largo del tiempo.
+Importancia:
