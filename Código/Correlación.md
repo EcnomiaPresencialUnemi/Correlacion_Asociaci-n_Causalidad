@@ -130,3 +130,4 @@ print(correlation) # -0.07976374
 ```
 #### *8.1 Interpretación del resultado de la correlación*
 - -0.07976374: No hay una relación lineal significativa entre los cambios porcentuales en el precio ajustado de las acciones de Apple y el volumen de transacciones.
+- Esto podría implicar que otros factores, no capturados por estas dos variables, podrían estar influyendo en el comportamiento del precio o del volumen.
