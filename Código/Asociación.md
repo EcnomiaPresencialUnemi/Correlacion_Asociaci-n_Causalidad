@@ -3,3 +3,10 @@
 - **Correlación Baja**: La correlación baja (-0.0798) sugiere una relación lineal débil, indicando posibles factores adicionales o una relación no lineal.
 - **Modelo de Asociación**: Un modelo de regresión puede revelar una asociación más compleja entre las variables que la simple correlación no captó.
 - **Incorporación de Otros Factores**: Incluir variables adicionales como indicadores macroeconómicos podría fortalecer la relación entre el volumen y los cambios en el precio ajustado.
+
+### 2. Ampliando el modelo
+Variables que se incorporan:
+- Índice S&P 500 ('GSPC.Adjusted'): Captura el comportamiento del mercado en general.
+- Índice de Volatilidad ('VIX.Adjusted'): Mide la volatilidad esperada del mercado.
+- Medias Móviles ('SMA_50', 'SMA_200'): Detectan tendencias en el precio de Apple.
+- Precios ajustados de competidores como Microsoft ('MSFT.Adjusted').
