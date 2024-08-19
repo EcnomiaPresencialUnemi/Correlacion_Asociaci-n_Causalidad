@@ -65,6 +65,9 @@ adf_adjusted <- adf.test(aapl_selected$AAPL.Adjusted, alternative = "stationary"
 adf_volume <- adf.test(aapl_selected$AAPL.Volume, alternative = "stationary")
 
 # Ver los resultados
-print(adf_adjusted)
-print(adf_volume)
+print(adf_adjusted) # p-value = 0.99
+print(adf_volume) # p-value = 0.01
 ```
+#### *5.1 Interpretación de los resultados del test*
+-  `AAPL.Adjusted`: p-value = 0.99. El p-value es muy alto, lo que indica que no podemos rechazar la hipótesis nula de no estacionariedad. Esto confirma que el precio ajustado no es estacionario.
+-  `AAPL.Volume`: p-value: 0.01. El p-value es bajo, lo que significa que podemos rechazar la hipótesis nula y concluir que el volumen de transacciones es estacionario.
