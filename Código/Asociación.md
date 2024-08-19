@@ -42,5 +42,5 @@ aapl_selected$SMA_50 <- SMA(aapl_selected$AAPL.Adjusted, n = 50)
 aapl_selected$SMA_200 <- SMA(aapl_selected$AAPL.Adjusted, n = 200)
 
 # Unir la variable de Microsoft (precio ajustado) con el data frame de Apple
-aapl_selected <- merge(aapl_selected, msft_selected, by = "date", all.x = TRUE)
+aapl_selected <- merge(aapl_selected, msft_data, by = "date", all.x = TRUE)
 ```
