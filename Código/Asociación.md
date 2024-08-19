@@ -137,3 +137,31 @@ adf_diff_test_results$diff_MSFT_Adj <- adf.test(aapl_selected_diff$diff_MSFT_Adj
 # Mostrar los resultados
 adf_diff_test_results
 ```
+
+### 7. Asociación: Modelo de Regresión
+
+```r
+# Preparar el data frame para el modelo de regresión
+regression_data <- data.frame(
+  diff_AAPL_Adj = aapl_selected_diff$diff_AAPL_Adj,
+  AAPL_Volume = aapl_selected_diff$AAPL_Volume,
+  diff_SMA_200 = aapl_selected_diff$diff_SMA_200,
+  diff_GSPC_Adj = aapl_selected_diff$diff_GSPC_Adj,
+  VIX_Adj = aapl_selected_diff$VIX_Adj,
+  diff_MSFT_Adj = aapl_selected_diff$diff_MSFT_Adj
+)
+```
+```r
+# Construir el modelo de regresión lineal
+regression_model <- lm(diff_AAPL_Adj ~ AAPL_Volume + diff_SMA_200 + diff_GSPC_Adj + VIX_Adj + diff_MSFT_Adj, data = regression_data)
+
+# Resumen del modelo
+summary(regression_model)
+```
+#### 7. *Explicación de los resultados*
+- Intercepción (-0.05212): La intercepción es negativa, pero su valor es pequeño y tiene un p-valor significativo (0.0462), lo que indica que el modelo predice un pequeño ajuste constante negativo en la variable dependiente cuando todas las variables independientes son cero.
+- AAPL.Volume:(3.465e-11): El coeficiente es positivo, lo que indica que un aumento en el volumen de transacciones de Apple está asociado con un pequeño aumento en diff_AAPL_Adj. Sin embargo, el p-valor es 0.2045, lo que sugiere que esta relación no es estadísticamente significativa.
+- diff_SMA_200:(0.6619): El coeficiente es positivo y significativo (p-valor = 6.63e-06), lo que indica que un aumento en diff_SMA_200 está asociado con un aumento en diff_AAPL_Adj. Esta variable tiene una relación fuerte y significativa con la variable dependiente.
+-diff_GSPC_Adj:(0.01651): Este coeficiente es altamente significativo (p-valor < 2e-16) y positivo, lo que indica que un aumento en diff_GSPC_Adj (S&P 500 ajustado) está asociado con un aumento en diff_AAPL_Adj. Esta es una de las variables más fuertes en el modelo.
+-VIX_Adj:(0.001344): El coeficiente es positivo, pero el p-valor (0.2420) sugiere que la relación no es estadísticamente significativa. Esto indica que la volatilidad del mercado, tal como se mide por el VIX, no tiene un impacto significativo en la variación ajustada de Apple.
+-diff_MSFT_Adj:(0.2364): Este coeficiente es altamente significativo (p-valor < 2e-16) y positivo, lo que indica que un aumento en diff_MSFT_Adj (Microsoft ajustado) está asociado con un aumento en diff_AAPL_Adj. Esta es otra de las variables más fuertes en el modelo.
