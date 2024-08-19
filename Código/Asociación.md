@@ -100,3 +100,40 @@ adf_test_results
 - 'GSPC.Adjusted': La serie no es estacionaria (p-value = 0.7409) y presenta una raíz unitaria.
 - 'VIX.Adjusted': La serie es estacionaria (p-value = 0.01) y no presenta una raíz unitaria.
 - 'MSFT.Adjusted': La serie no es estacionaria (p-value = 0.99) y presenta una raíz unitaria.
+
+### 6. Diferenciar las Variables No Estacionarias
+```r
+# Diferenciar las variables no estacionarias
+aapl_selected_diff <- data.frame(
+  diff_AAPL_Adj = diff(aapl_selected_clean$AAPL.Adjusted, differences = 1),
+  diff_SMA_200 = diff(aapl_selected_clean$SMA_200, differences = 1),
+  diff_GSPC_Adj = diff(aapl_selected_clean$GSPC.Adjusted, differences = 1),
+  diff_MSFT_Adj = diff(aapl_selected_clean$MSFT.Adjusted, differences = 1)
+)
+
+# También recortamos las demás columnas para alinearlas con las series diferenciadas
+aapl_selected_diff <- aapl_selected_diff %>%
+  mutate(
+    AAPL_Volume = aapl_selected_clean$AAPL.Volume[-1],
+    VIX_Adj = aapl_selected_clean$VIX.Adjusted[-1]
+  )
+```
+```r
+# Aplicar el test de Dickey-Fuller a las variables diferenciadas
+adf_diff_test_results <- list()
+
+# Test para diff_AAPL_Adj
+adf_diff_test_results$diff_AAPL_Adj <- adf.test(aapl_selected_diff$diff_AAPL_Adj, alternative = "stationary")
+
+# Test para diff_SMA_200
+adf_diff_test_results$diff_SMA_200 <- adf.test(aapl_selected_diff$diff_SMA_200, alternative = "stationary")
+
+# Test para diff_GSPC_Adj
+adf_diff_test_results$diff_GSPC_Adj <- adf.test(aapl_selected_diff$diff_GSPC_Adj, alternative = "stationary")
+
+# Test para diff_MSFT_Adj
+adf_diff_test_results$diff_MSFT_Adj <- adf.test(aapl_selected_diff$diff_MSFT_Adj, alternative = "stationary")
+
+# Mostrar los resultados
+adf_diff_test_results
+```
