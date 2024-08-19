@@ -115,9 +115,18 @@ print(adf_diff_log_adjusted) # p-value = 0.01
 - `aapl_selected$diff_log_adjusted <- diff_log_adjusted`: Añade la serie diferenciada al data.frame.
 - `adf.test(aapl_selected$diff_log_adjusted, alternative = "stationary")`: Aplica el test de Dickey-Fuller para verificar la estacionariedad de la serie diferenciada.
 
-#### *7.2 Interpretación de los resultados del test*
+#### *7.2 Interpretación del resultado del test*
 - **p-value = 0.01**: Este valor es menor que el umbral común de 0.05, lo que significa que podemos rechazar la hipótesis nula de no estacionariedad. En otras palabras, la serie logarítmica diferenciada es ahora estacionaria.
 
 ### 8. Correlación
 #### - La correlación se aplica para medir la fuerza y la dirección de la relación lineal entre dos variables. En este caso estamos interesados en entender cómo los cambios en el precio ajustado, `diff_log_adjusted`, de las acciones de Apple y el volumen de transacciones, `AAPL.Volume`, están relacionados.
 #### -La correlación de Pearson es adecuada para medir la relación lineal entre dos variables continuas.
+```r
+# Calcular la correlación de Pearson entre la serie logarítmica diferenciada y el volumen
+correlation <- cor(aapl_selected$diff_log_adjusted, aapl_selected$AAPL.Volume, method = "pearson")
+
+# Mostrar la correlación
+print(correlation) # -0.07976374
+```
+#### *8.1 Interpretación del resultado de la correlación
+- -0.07976374: No hay una relación lineal significativa entre los cambios porcentuales en el precio ajustado de las acciones de Apple y el volumen de transacciones.
