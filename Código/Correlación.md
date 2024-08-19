@@ -128,5 +128,5 @@ correlation <- cor(aapl_selected$diff_log_adjusted, aapl_selected$AAPL.Volume, m
 # Mostrar la correlación
 print(correlation) # -0.07976374
 ```
-#### *8.1 Interpretación del resultado de la correlación
+#### *8.1 Interpretación del resultado de la correlación*
 - -0.07976374: No hay una relación lineal significativa entre los cambios porcentuales en el precio ajustado de las acciones de Apple y el volumen de transacciones.
