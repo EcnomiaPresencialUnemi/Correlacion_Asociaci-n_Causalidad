@@ -40,3 +40,12 @@ aapl_data <- data.frame(date = index(AAPL), coredata(AAPL))
 # Seleccionar las columnas de interés: precio de cierre ajustado y volumen
 aapl_selected <- aapl_data %>% select(date, AAPL.Adjusted, AAPL.Volume)
 ```
+
+#### *4.1 Explicación del código*
+- `aapl_selected <-`: almacena el resultado de la selección en un nuevo objeto para su uso posterior.
+- `aapl_data %>%`: toma el data.frame original aapl_data y lo pasa a la siguiente función (select()), que operará sobre él.
+- `select(date, AAPL.Adjusted, AAPL.Volume)`: selecciona únicamente las columnas date, AAPL.Adjusted, y AAPL.Volume del data.frame original.
+- `date`: Incluye la columna de fechas para mantener la referencia temporal.
+- `AAPL.Adjusted`: Selecciona el precio de cierre ajustado de Apple, que es esencial para analizar el valor de las acciones ajustado por eventos corporativos.
+- `AAPL.Volume`: Selecciona el volumen de transacciones, que es clave para evaluar la actividad del mercado.
+
