@@ -30,8 +30,7 @@ getSymbols("AAPL", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
 aapl_data <- data.frame(date = index(AAPL), coredata(AAPL))
 ```
 
-### 4. Seleccionar las columnas de interés para la correlación
-
+### 4. Seleccionar las variables de interés para la correlación
 #### Las variables de interés seleccionadas para la correlación son AAPL.Adjusted y AAPL.Volume:
 - `AAPL.Adjusted` (Precio de Cierre Ajustado): refleja el valor de las acciones de Apple después de ajustar por eventos corporativos como dividendos, splits, etc.
 - `AAPL.Volume` (Volumen de Transacciones): muestra cuántas acciones se compran y venden en un día determinado.
