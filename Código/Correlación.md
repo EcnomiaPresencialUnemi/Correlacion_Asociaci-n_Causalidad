@@ -11,3 +11,7 @@ install.packages("tidyverse")
 library(quantmod)
 library(tidyverse)
 ```
+```r
+# Obtener datos históricos de los precios de las acciones de Apple (AAPL)
+getSymbols("AAPL", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
+```
