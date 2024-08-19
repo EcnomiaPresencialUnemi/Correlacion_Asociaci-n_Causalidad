@@ -26,3 +26,9 @@ granger_test_2 <- grangertest(diff_log_adjusted ~ AAPL.Volume, order = 2, data =
 print(granger_test_1)
 print(granger_test_2)
 ```
+#### *4.1 Interpretación de los resultados*
+- Prueba 1: diff_log_adjusted causa AAPL.Volume:
+p-valor = 0.3155: Este p-valor es mayor que 0.05, lo que indica que no podemos rechazar la hipótesis nula. Esto significa que no hay suficiente evidencia para afirmar que diff_log_adjusted tiene un poder predictivo sobre AAPL.Volume.
+
+- Prueba 2: AAPL.Volume causa diff_log_adjusted:
+p-valor = 0.5522: Este p-valor también es mayor que 0.05, lo que sugiere que no podemos rechazar la hipótesis nula. Esto implica que no hay suficiente evidencia para afirmar que AAPL.Volume tiene un poder predictivo sobre diff_log_adjusted.
