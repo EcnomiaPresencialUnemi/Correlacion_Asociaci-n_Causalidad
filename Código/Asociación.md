@@ -46,6 +46,8 @@ aapl_selected <- merge(aapl_selected, msft_data, by = "date", all.x = TRUE)
 ```
 
 ### 4. Verificamos la existencia de valores perdidos y evaluamos su posible eliminación e imputación
+
+```r
 # Calcular el porcentaje de NA en cada columna
 na_percentage <- colSums(is.na(aapl_selected)) / nrow(aapl_selected) * 100
 
@@ -54,3 +56,40 @@ print(na_percentage)
 
 # Crear una nueva data frame eliminando las filas con NA en SMA_200
 aapl_selected_clean <- aapl_selected[!is.na(aapl_selected$SMA_200), ]
+```
+
+### 5. Comprobar la Estacionariedad (Test de Dickey-Fuller)
+
+```r
+# Instalar si no los tienes
+install.packages("tseries")
+install.packages("urca")
+
+# Cargar los paquetes
+library(tseries)
+library(urca)
+
+# Aplicar el test de Dickey-Fuller a cada variable
+adf_test_results <- list()
+
+# Test para AAPL.Adjusted
+adf_test_results$AAPL_Adj <- adf.test(aapl_selected_clean$AAPL.Adjusted, alternative = "stationary")
+
+# Test para AAPL.Volume
+adf_test_results$AAPL_Volume <- adf.test(aapl_selected_clean$AAPL.Volume, alternative = "stationary")
+
+# Test para SMA_200
+adf_test_results$SMA_200 <- adf.test(aapl_selected_clean$SMA_200, alternative = "stationary")
+
+# Test para GSPC.Adjusted
+adf_test_results$GSPC_Adj <- adf.test(aapl_selected_clean$GSPC.Adjusted, alternative = "stationary")
+
+# Test para VIX.Adjusted
+adf_test_results$VIX_Adj <- adf.test(aapl_selected_clean$VIX.Adjusted, alternative = "stationary")
+
+# Test para MSFT.Adjusted
+adf_test_results$MSFT_Adj <- adf.test(aapl_selected_clean$MSFT.Adjusted, alternative = "stationary")
+
+# Mostrar los resultados
+adf_test_results
+```
