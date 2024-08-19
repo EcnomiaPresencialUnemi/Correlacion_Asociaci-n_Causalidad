@@ -29,6 +29,12 @@ getSymbols("AAPL", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
 # Convertir los datos a un data frame
 aapl_data <- data.frame(date = index(AAPL), coredata(AAPL))
 ```
+#### *3.1 Explicación del código*
+- `aapl_data <-`: asigna el resultado de la operación a un nuevo objeto que contendrá las fechas y los datos principales de la serie temporal de AAPL.
+- `data.frame(`: crea un nuevo data.frame en R.
+- `date = index(AAPL),`: extrae las fechas de la serie temporal AAPL y las almacena en una columna llamada date dentro del data.frame.
+- `coredata(AAPL)`: obtiene la parte principal de los datos (es decir, los valores numéricos) y los integra en el data.frame.
+
 
 ### 4. Seleccionar las variables de interés para la correlación
 #### Las variables de interés seleccionadas para la correlación son AAPL.Adjusted y AAPL.Volume:
