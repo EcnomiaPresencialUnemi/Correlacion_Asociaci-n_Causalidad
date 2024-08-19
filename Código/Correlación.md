@@ -56,5 +56,5 @@ aapl_selected <- aapl_data %>% select(date, AAPL.Adjusted, AAPL.Volume)
 - `AAPL.Volume`: Selecciona el volumen de transacciones, que es clave para evaluar la actividad del mercado.
 
 ### 5. Verificar la estacionariedad
-#### Test de Dickey-Fuller Aumentado (ADF).- El ADF test se utiliza para determinar si una serie temporal es estacionaria, lo que significa que sus propiedades estadísticas, como la media y la varianza, son constantes a lo largo del tiempo.
+#### **Test de Dickey-Fuller Aumentado (ADF)**.- El ADF test se utiliza para determinar si una serie temporal es estacionaria, lo que significa que sus propiedades estadísticas, como la media y la varianza, son constantes a lo largo del tiempo.
 Importancia:
