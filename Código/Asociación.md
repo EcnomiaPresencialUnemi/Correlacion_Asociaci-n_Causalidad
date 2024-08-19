@@ -44,3 +44,13 @@ aapl_selected$SMA_200 <- SMA(aapl_selected$AAPL.Adjusted, n = 200)
 # Unir la variable de Microsoft (precio ajustado) con el data frame de Apple
 aapl_selected <- merge(aapl_selected, msft_data, by = "date", all.x = TRUE)
 ```
+
+### 4. Verificamos la existencia de valores perdidos y evaluamos su posible eliminación e imputación
+# Calcular el porcentaje de NA en cada columna
+na_percentage <- colSums(is.na(aapl_selected)) / nrow(aapl_selected) * 100
+
+# Mostrar los porcentajes de NA para cada columna
+print(na_percentage)
+
+# Crear una nueva data frame eliminando las filas con NA en SMA_200
+aapl_selected_clean <- aapl_selected[!is.na(aapl_selected$SMA_200), ]
