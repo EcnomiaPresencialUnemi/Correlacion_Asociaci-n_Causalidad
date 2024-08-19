@@ -22,3 +22,10 @@ getSymbols("AAPL", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
 - `AAPL` es el símbolo de Apple en el mercado de valores.
 - `src = "yahoo"`: Especifica que los datos se obtendrán desde Yahoo Finance.
 - `from = "2000-01-01", to = "2023-12-31"`: Define el rango de fechas para los datos que quieres descargar. Aquí, los datos se descargarán desde el 1 de enero de 2000 hasta el 31 de diciembre de 2023.
+
+### 3. Convertir los datos a un datafrmae
+
+```r
+# Convertir los datos a un data frame
+aapl_data <- data.frame(date = index(AAPL), coredata(AAPL))
+```
