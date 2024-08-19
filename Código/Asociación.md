@@ -4,7 +4,7 @@
 - **Modelo de Asociación**: Un modelo de regresión puede revelar una asociación más compleja entre las variables que la simple correlación no captó.
 - **Incorporación de Otros Factores**: Incluir variables adicionales como indicadores macroeconómicos podría fortalecer la relación entre el volumen y los cambios en el precio ajustado.
 
-### 2. Ampliando el modelo
+### 2. Ampliando el modelo: extrayendo más variables
 Variables que se incorporan:
 - Índice S&P 500 ('GSPC.Adjusted'): Captura el comportamiento del mercado en general.
 - Índice de Volatilidad ('VIX.Adjusted'): Mide la volatilidad esperada del mercado.
@@ -30,4 +30,17 @@ aapl_selected$SMA_200 <- SMA(aapl_selected$AAPL.Adjusted, n = 200)
 # Precios de Cierre Ajustados de Competidores:
 getSymbols("MSFT", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
 msft_data <- data.frame(date = index(MSFT), coredata(MSFT))
+```
+### 3. Ampliando el modelo incorporando más variables
+
+```r
+# Unir los datos de SP500 y VIX con los datos de AAPL basados en la fecha
+aapl_selected <- merge(aapl_selected, sp500_data[, c("date", "GSPC.Adjusted")], by = "date", all.x = TRUE)
+aapl_selected <- merge(aapl_selected, vix_data[, c("date", "VIX.Adjusted")], by = "date", all.x = TRUE)
+
+aapl_selected$SMA_50 <- SMA(aapl_selected$AAPL.Adjusted, n = 50)
+aapl_selected$SMA_200 <- SMA(aapl_selected$AAPL.Adjusted, n = 200)
+
+# Unir la variable de Microsoft (precio ajustado) con el data frame de Apple
+aapl_selected <- merge(aapl_selected, msft_selected, by = "date", all.x = TRUE)
 ```
