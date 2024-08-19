@@ -119,5 +119,5 @@ print(adf_diff_log_adjusted) # p-value = 0.01
 - **p-value = 0.01**: Este valor es menor que el umbral común de 0.05, lo que significa que podemos rechazar la hipótesis nula de no estacionariedad. En otras palabras, la serie logarítmica diferenciada es ahora estacionaria.
 
 ### 8. Correlación
-#### La correlación se aplica para medir la fuerza y la dirección de la relación lineal entre dos variables. En este caso estamos interesados en entender cómo los cambios en el precio ajustado, `diff_log_adjusted`, de las acciones de Apple y el volumen de transacciones, `AAPL.Volume`, están relacionados.
-### La correlación de Pearson es adecuada para medir la relación lineal entre dos variables continuas.
+#### - La correlación se aplica para medir la fuerza y la dirección de la relación lineal entre dos variables. En este caso estamos interesados en entender cómo los cambios en el precio ajustado, `diff_log_adjusted`, de las acciones de Apple y el volumen de transacciones, `AAPL.Volume`, están relacionados.
+#### -La correlación de Pearson es adecuada para medir la relación lineal entre dos variables continuas.
