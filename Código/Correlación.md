@@ -58,6 +58,10 @@ aapl_selected <- aapl_data %>% select(date, AAPL.Adjusted, AAPL.Volume)
 ### 5. Verificar la estacionariedad
 #### **Test de Dickey-Fuller Aumentado (ADF)**.- El ADF test se utiliza para determinar si una serie temporal es estacionaria, lo que significa que sus propiedades estadísticas, como la media y la varianza, son constantes a lo largo del tiempo.
 ```r
+# instalamos y cargamos el paquete necesario
+install.packages("tseries")
+library(tseries)
+
 # Test de Dickey-Fuller para el precio ajustado
 adf_adjusted <- adf.test(aapl_selected$AAPL.Adjusted, alternative = "stationary")
 
@@ -71,3 +75,45 @@ print(adf_volume) # p-value = 0.01
 #### *5.1 Interpretación de los resultados del test*
 -  `AAPL.Adjusted`: p-value = 0.99. El p-value es muy alto, lo que indica que no podemos rechazar la hipótesis nula de no estacionariedad. Esto confirma que el precio ajustado no es estacionario.
 -  `AAPL.Volume`: p-value: 0.01. El p-value es bajo, lo que significa que podemos rechazar la hipótesis nula y concluir que el volumen de transacciones es estacionario.
+
+### 6. Transformación logarítmica
+#### Dado que la variable `AAPL.Adjusted` no es estacionaria, se recomienda aplicar una transformación logarítmica y luego volver a aplicar el test ADF.
+```r
+# Transformación logarítmica del precio ajustado y agregarla al data frame
+aapl_selected$log_adjusted <- log(aapl_selected$AAPL.Adjusted)
+
+# Aplicar el test de Dickey-Fuller a la variable transformada en logaritmo
+adf_log_adjusted <- adf.test(aapl_selected$log_adjusted, alternative = "stationary")
+
+# Ver los resultados del ADF test para la variable logarítmica
+print(adf_log_adjusted) #  p-value = 0.1385
+```
+#### *6.1 Interpretación de los resultados del test*
+- **p-value = 0.1385**: Este valor es mayor que el umbral común de 0.05, lo que significa que no podemos rechazar la hipótesis nula de que la serie no es estacionaria. En otras palabras, la serie logarítmica `log_adjusted` sigue sin ser estacionaria.
+
+### 7. Diferenciación
+#### Dado que la serie logarítmica aún no es estacionaria, es necesario aplicar una diferenciación para eliminar cualquier tendencia y hacer que la serie sea estacionaria antes de proceder con el análisis de correlación.
+```r
+# Diferenciar la serie logarítmica
+diff_log_adjusted <- diff(aapl_selected$log_adjusted)
+
+# Crear un nuevo data frame que excluya la primera fila para coincidir con la longitud de diff_log_adjusted
+aapl_selected <- aapl_selected[-1, ]
+
+# Agregar la serie diferenciada al data frame
+aapl_selected$diff_log_adjusted <- diff_log_adjusted
+
+# Volver a aplicar el test de Dickey-Fuller para verificar la estacionariedad
+adf_diff_log_adjusted <- adf.test(aapl_selected$diff_log_adjusted, alternative = "stationary")
+
+# Ver los resultados del ADF test para la serie diferenciada
+print(adf_diff_log_adjusted) # p-value = 0.01
+```
+#### *7.1 Explicación del código*
+- `diff_log_adjusted <- diff(aapl_selected$log_adjusted)`: Calcula la diferencia de la serie logarítmica.
+- `aapl_selected <- aapl_selected[-1, ]`: Elimina la primera fila del data.frame para que coincida con la longitud de la serie diferenciada.
+- `aapl_selected$diff_log_adjusted <- diff_log_adjusted`: Añade la serie diferenciada al data.frame.
+- `adf.test(aapl_selected$diff_log_adjusted, alternative = "stationary")`: Aplica el test de Dickey-Fuller para verificar la estacionariedad de la serie diferenciada.
+
+#### *7.2 Interpretación de los resultados del test*
+- **p-value = 0.01**: Este valor es menor que el umbral común de 0.05, lo que significa que podemos rechazar la hipótesis nula de no estacionariedad. En otras palabras, la serie logarítmica diferenciada es ahora estacionaria.
