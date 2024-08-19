@@ -93,3 +93,10 @@ adf_test_results$MSFT_Adj <- adf.test(aapl_selected_clean$MSFT.Adjusted, alterna
 # Mostrar los resultados
 adf_test_results
 ```
+#### *5.1 Explicación de los resultados*
+- 'AAPL.Adjusted': La serie no es estacionaria (p-value = 0.99) y presenta una raíz unitaria.
+- 'AAPL.Volume': La serie es estacionaria (p-value = 0.01) y no presenta una raíz unitaria.
+- 'SMA_200': La serie no es estacionaria (p-value = 0.99) y presenta una raíz unitaria.
+- 'GSPC.Adjusted': La serie no es estacionaria (p-value = 0.7409) y presenta una raíz unitaria.
+- 'VIX.Adjusted': La serie es estacionaria (p-value = 0.01) y no presenta una raíz unitaria.
+- 'MSFT.Adjusted': La serie no es estacionaria (p-value = 0.99) y presenta una raíz unitaria.
