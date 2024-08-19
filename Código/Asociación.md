@@ -10,3 +10,10 @@ Variables que se incorporan:
 - Índice de Volatilidad ('VIX.Adjusted'): Mide la volatilidad esperada del mercado.
 - Medias Móviles ('SMA_50', 'SMA_200'): Detectan tendencias en el precio de Apple.
 - Precios ajustados de competidores como Microsoft ('MSFT.Adjusted').
+
+# Precio de Cierre Ajustado de Otros Índices:
+getSymbols("^GSPC", src = "yahoo", from = "2000-01-01", to = "2023-12-31")
+sp500_data <- data.frame(date = index(GSPC), coredata(GSPC))
+
+# Volatilidad del Mercado:
+
